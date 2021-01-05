@@ -46,6 +46,8 @@ Copie du jeu de données entier au format GeoJSON dans `/data/les-arbres.les-arb
 Idem pour le fond de carte des arrondissements de Paris.
 
 ```{r}
+# Créer le dossier data
+if (!dir.exists("data")) dir.create("data")
 # Arbres
 if (!file.exists("data/les-arbres.geojson"))
   # Télécharger le fichier de données s'il n'existe pas (100 Mo)
