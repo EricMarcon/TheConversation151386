@@ -76,6 +76,7 @@ arrondissements <- readOGR("data/arrondissements.geojson", "arrondissements", en
 # Filtrage des 20 arrondissements sans les Bois
 arrondissements <- arrondissements[arrondissements@data$C_CAINSEE %/% 1000 == 75 & arrondissements@data$B_BOIS == "N" , ]
 # Arrondissement décrit par son numéro
+library("tidyverse")
 arrondissements@data$L_CAB <- str_replace(arrondissements@data$L_CAB, "er", "")
 arrondissements@data$L_CAB <- str_replace(arrondissements@data$L_CAB, "ème", "")
 library("sp")
@@ -87,7 +88,6 @@ plot(arrondissements)
 Projection des données dans le référentiel Lambert 93 pour avoir des coordonnées en mètres.
 
 ```{r}
-library(tidyverse)
 les_arbres %>% 
   spTransform(CRS("+init=epsg:2154")) ->
   les_arbres_Lambert93
