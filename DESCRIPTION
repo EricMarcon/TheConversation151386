@@ -10,7 +10,7 @@ Depends:
   R (>= 3.1.0)
 Imports:
   entropart,
-  formatr
+  formatr,
   kableExtra,
   rgdal,
   tidyverse
