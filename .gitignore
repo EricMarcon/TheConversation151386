@@ -47,8 +47,5 @@
 # Spécifique
 /*.rds
 
-# CI
-docs/
-
 # Data
 /data/
