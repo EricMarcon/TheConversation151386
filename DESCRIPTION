@@ -10,7 +10,9 @@ Depends:
   R (>= 3.1.0)
 Imports:
   entropart,
+  formatr
   kableExtra,
+  rgdal,
   tidyverse
 Remotes:
   EricMarcon/SpatDiv
