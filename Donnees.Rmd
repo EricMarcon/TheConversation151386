@@ -30,7 +30,7 @@ GitHubLibrary <- function(Packages) {
   invisible(sapply(Packages, InstallAndLoad))
 }
 # Ajouter les packages nécessaires ici
-CRANLibrary(c("alphahull", "entropart", "kableExtra", "tidyverse"))
+CRANLibrary(c("entropart", "kableExtra", "tidyverse"))
 GitHubLibrary("EricMarcon/SpatDiv")
 ```
 
