@@ -49,3 +49,6 @@
 
 # CI
 docs/
+
+# Data
+/data/
