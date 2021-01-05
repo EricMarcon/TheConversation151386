@@ -87,7 +87,7 @@ plot(arrondissements)
 
 Projection des données dans le référentiel Lambert 93 pour avoir des coordonnées en mètres.
 
-```{r}
+```{r, warning=FALSE}
 les_arbres %>% 
   spTransform(CRS("+init=epsg:2154")) ->
   les_arbres_Lambert93
@@ -184,7 +184,7 @@ Espèces les plus fréquentes :
 AbdFreqCount
 ```
 Le nombre total d'espèces est `r nrow(AbdFreqCount)`.
-Faire défiler le tableau pour les afficher.
+La liste complète est en annexe.
 
 Diagramme rang-abondance des espèces :
 ```{r, tidy=FALSE}
@@ -323,4 +323,10 @@ Richesse des parcs des 16ème et 20ème arrondissements:
 PGDiversite[PGDiversite$arrondissement %in% c("16", "20"), c("arrondissement", "alphaRichness", "betaRichness", "gammaRichness")]
 ```
 
+# Annexe : liste complète des espèces
+
+```{r}
+knitr::kable(AbdFreqCount[order(AbdFreqCount$spName), ], longtable = TRUE, booktabs = TRUE) %>%
+kableExtra::kable_styling(bootstrap_options = "striped", full_width = FALSE)
+```
 
