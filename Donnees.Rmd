@@ -72,12 +72,13 @@ les_arbres <- readOGR("data/les-arbres.geojson","les-arbres", encoding = "UTF-8"
 Lecture du fichier des arrondissements.
 
 ```{r}
-arrondissements <- readOGR("data/arrondissements.geojson", "arrondissements", encoding = "UTF-8", use_iconv = TRUE)
+arrondissements <- readOGR("data/arrondissements.geojson", layer="COMMUNE_ARRONDISSEMENT_BOIS", encoding = "UTF-8", use_iconv = TRUE)
 # Filtrage des 20 arrondissements sans les Bois
 arrondissements <- arrondissements[arrondissements@data$C_CAINSEE %/% 1000 == 75 & arrondissements@data$B_BOIS == "N" , ]
 # Arrondissement décrit par son numéro
 library("tidyverse")
 arrondissements@data$L_CAB <- str_replace(arrondissements@data$L_CAB, "er", "")
+arrondissements@data$L_CAB <- str_replace(arrondissements@data$L_CAB, "e", "")
 arrondissements@data$L_CAB <- str_replace(arrondissements@data$L_CAB, "ème", "")
 library("sp")
 plot(arrondissements)
@@ -277,7 +278,7 @@ les_arbres_df %>%
 
 ### Diversité $\alpha$ des parcs
 
-Filtrage des donnnées de parcs (jardins) uniquement et calcul de la richesse, de Shannon et Simpson par arrondissement.
+Filtrage des donnnées de parcs (jardins) uniquement et calcul de la richesse et Simpson par arrondissement.
 ```{r, warning=FALSE}
 # Alpha
 les_arbres_df %>% dplyr::filter(domanialite == "Jardin") %>% 
@@ -330,3 +331,30 @@ knitr::kable(AbdFreqCount[order(AbdFreqCount$spName), ], longtable = TRUE, bookt
 kableExtra::kable_styling(bootstrap_options = "striped", full_width = FALSE)
 ```
 
+##Espèces indéterminées
+
+Espèces notées "n. sp":
+```{r}
+les_arbres_df %>% 
+  group_by(genre, espece) %>% 
+  summarise(Nombre=n(), .groups='drop') %>% 
+  dplyr::filter(espece == "n. sp.") ->
+  nsp
+nsp
+```
+
+Espèces non renseignées:
+```{r}
+les_arbres_df %>% 
+  group_by(genre, espece) %>% 
+  summarise(Nombre=n(), .groups='drop') %>% 
+  dplyr::filter(is.na(espece)) ->
+  nasp
+nasp
+```
+
+
+Espèces doublement notées "n. sp" et NA:
+```{r}
+merge(nsp, nasp, by="genre")
+```
