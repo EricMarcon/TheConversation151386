@@ -13,7 +13,7 @@ Imports:
   kableExtra,
   rgdal,
   rgeos,
-  spatdiv,
+  SpatDiv,
   tidyverse
 Remotes:
   EricMarcon/SpatDiv
