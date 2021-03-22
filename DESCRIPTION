@@ -1,6 +1,6 @@
 Package: TheConversation151386
 Title: Parisiens en quête de biodiversité, promenez-vous dans les cimetières!
-Version: 1.0.0
+Version: 1.1
 Authors@R: c(
   person("Eric", "Marcon", , "e.marcon@free.fr", c("aut", "cre")),
   person("Florence", "Puech", , "florence.puech@universite-paris-saclay.fr", c("aut"))
@@ -10,9 +10,10 @@ Depends:
   R (>= 3.1.0)
 Imports:
   entropart,
-  formatR,
   kableExtra,
   rgdal,
+  rgeos,
+  spatdiv,
   tidyverse
 Remotes:
   EricMarcon/SpatDiv

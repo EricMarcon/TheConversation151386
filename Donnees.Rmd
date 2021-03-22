@@ -30,11 +30,16 @@ GitHubLibrary <- function(Packages) {
   invisible(sapply(Packages, InstallAndLoad))
 }
 # Ajouter les packages nécessaires ici
-CRANLibrary(c("entropart", "formatR", "kableExtra", "rgdal", "tidyverse"))
+CRANLibrary(c("entropart", "formatR", "kableExtra", "rgdal", "rgeos", "tidyverse"))
 GitHubLibrary("EricMarcon/SpatDiv")
 ```
 
 Traitement des données de la base de données ouvertes de la ville de Paris pour le billet *Parisiens en quête de biodiversité, promenez-vous dans les cimetières !* dans [The Conversation](https://theconversation.com/parisiens-en-quete-de-biodiversite-promenez-vous-dans-les-cimetieres-151386).
+
+Ce document est un bloc-note R Markdown: il contient le code R nécessaire à la reproduction de tout le traitement des données, de leur obtention à partir des données ouvertes de la ville de Paris à la production des figures.
+Le projet peut être copié à partir de GitHub[^1] et exécuté dans RStudio.
+
+[^1]: https://github.com/EricMarcon/TheConversation151386
 
 # Préparation des données
 
